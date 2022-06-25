@@ -1,0 +1,30 @@
+@font-face{
+	font-family: Poppins;
+	src: url(.../fonts/Poppins-Regular.ttf);
+}
+
+body{
+	font-family: Poppins;
+}
+
+.margin{
+	margin-left: 200px;
+	margin-right: 200px;
+}
+.padding{
+	padding-left: 1ren;
+	padding-right: 1rem;
+}
+
+
+.btn-shp{
+	border-radius: 10px;
+}
+
+.bg-color{
+	background-color: blueviolet;
+}
+
+.bg-color1{
+	background-color: lightgrey;
+}
