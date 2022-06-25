@@ -19,7 +19,14 @@
         <div class="col-6">
             <div class="card shadow p-3">
                 <div class="card-body">
-                    <h4>Total Category : </h4>
+                    <h4>Total Post : {{ $blog }}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card shadow p-3">
+                <div class="card-body">
+                    <h4>Total Category : {{ $category }}</h4>
                 </div>
             </div>
         </div>

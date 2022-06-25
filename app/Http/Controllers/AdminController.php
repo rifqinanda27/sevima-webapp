@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Blog;
 
 class AdminController extends Controller
 {
@@ -24,6 +25,8 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view('backend.index');
+        $blog = Blog::count();
+        $category = Category::count();
+        return view('backend.index', compact('blog', 'category'));
     }
 }

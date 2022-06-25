@@ -36,10 +36,12 @@
 							<th>{{ $loop->iteration }}</th>
 							<td><img width="100px" src="/storage/{{ $blg->image }}"></td>
 							<td>{{ $blg->title }}</td>
-							<td>{{ $blg->desc }}</td>
+							<td>{{ Str::limit($blg->desc,40) }}</td>
 							<td>
 								<a href="{{ url('/admin/posts/')}}/{{ $blg->id }}/edit" class="btn btn-dark btn-shp">Edit</a>
-								<form action="" method="post">
+								<form action="/admin/posts/{{ $blg->id }}" method="post">
+									@csrf
+									@method('DELETE')
 									<button class="btn btn-danger btn-shp">Delete</button>
 								</form>
 							</td>

@@ -47,11 +47,15 @@ class BlogController extends Controller
         ]);
 
         $imgData = Storage::disk('public')->put('image', $request->file('image'));
+        $imgData2 = Storage::disk('public')->put('image2', $request->file('image2'));
+        $imgData3 = Storage::disk('public')->put('image3', $request->file('image3'));
 
         Blog::create([
             'title' => $request->title,
             'category_id' => $request->category_id,
             'image' => $imgData,
+            'image2' => $imgData2,
+            'image3' => $imgData3,
             'desc' => $request->desc,
         ]);
 
@@ -103,6 +107,18 @@ class BlogController extends Controller
             Storage::disk('public')->delete($delete->image);
             $imgData = Storage::disk('public')->put('image', $request->file('image'));
         }
+        $imgData2 = $request->img_old3;
+        if ( $request->has('image2') ) {
+            $delete = Blog::findOrFail($id);
+            Storage::disk('public')->delete($delete->image2);
+            $imgData = Storage::disk('public')->put('image2', $request->file('image2'));
+        }
+        $imgData3 = $request->img_old3;
+        if ( $request->has('image3') ) {
+            $delete = Blog::findOrFail($id);
+            Storage::disk('public')->delete($delete->image3);
+            $imgData = Storage::disk('public')->put('image3', $request->file('image3'));
+        }
 
         Blog::where('id', $id)->update([
             'title' => $request->title,
@@ -120,8 +136,16 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy($id)
     {
-        //
+        $delete = Blog::findOrFail($id);
+        Blog::find($id)->delete();
+        Storage::disk('public')->delete($delete->image);
+        Storage::disk('public')->delete($delete->image2);
+        Storage::disk('public')->delete($delete->image3);
+        $delete->delete();
+
+        return redirect('/admin/posts');
+
     }
 }

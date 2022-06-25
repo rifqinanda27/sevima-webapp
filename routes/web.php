@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::get('/admin/login', 'App\Http\Controllers\AuthController@login');
+Route::get('/admin/register', 'App\Http\Controllers\AuthController@register');
+
 Route::get('/', 'App\Http\Controllers\AdminController@homepage');
 Route::get('/about', 'App\Http\Controllers\AdminController@about');
 Route::get('/tutorial', 'App\Http\Controllers\AdminController@tutorial');
