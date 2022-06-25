@@ -21,4 +21,9 @@ class AdminController extends Controller
     {
         return view('frontend.tutorial');
     }
+
+    public function dashboard()
+    {
+        return view('backend.index');
+    }
 }

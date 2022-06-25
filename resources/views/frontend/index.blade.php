@@ -9,7 +9,7 @@
 			<p class="text-dark">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 			tempor incididunt ut labore et dolore magna aliqua. </p>
 			<div class="d-block d-md-none d-lg-block">
-				<a href="/tutorial" class="btn btn-dark btn-shp">Tutorial</a>
+				<a href="/tutorial" class="btn btn-dark btn-shp shadow">Tutorial</a>
 			</div>
 		</div>
 		<div class="col-12 col-lg-7">
@@ -17,7 +17,7 @@
 		</div>
 	</div>
 	<div class="text-center d-none d-md-block d-lg-none">
-		<a href="/tutorial" class="btn btn-dark btn-shp">Tutorial</a>
+		<a href="/tutorial" class="btn btn-dark btn-shp shadow">Tutorial</a>
 	</div>
 </div>
 </section>

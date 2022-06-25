@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = 'course';
+    protected $fillable = ['course'];
     use HasFactory;
 }

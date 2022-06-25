@@ -14,7 +14,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.blog.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.blog.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        //
+        return view('backend.blog.edit');
     }
 
     /**

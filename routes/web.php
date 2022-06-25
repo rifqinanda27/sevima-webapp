@@ -20,3 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\AdminController@homepage');
 Route::get('/about', 'App\Http\Controllers\AdminController@about');
 Route::get('/tutorial', 'App\Http\Controllers\AdminController@tutorial');
+Route::get('/admin', 'App\Http\Controllers\AdminController@dashboard');
+
+Route::resource('/admin/posts', 'App\Http\Controllers\BlogController');
+Route::resource('/admin/category', 'App\Http\Controllers\CategoryController');

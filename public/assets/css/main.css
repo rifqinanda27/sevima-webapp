@@ -3,6 +3,17 @@
 	src: url(.../fonts/Poppins-Regular.ttf);
 }
 
+html, body {
+	margin:0;
+	padding:0;
+	height:100%;
+}
+
+.container-internal {
+	position:relative;
+	min-height: 100%;
+}
+
 body{
 	font-family: Poppins;
 }
