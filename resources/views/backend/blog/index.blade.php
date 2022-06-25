@@ -8,14 +8,14 @@
 	<div class="card">
 		<div class="card-body">
             <div class="py-2">
-                <form action="/blog" method="get" class="d-flex">
+                <form action="{{ url('/blog') }}" method="get" class="d-flex">
                     <input type="text" name="search" class="form-control">
                     <button type="submit" class="btn btn-dark btn-shp">Search</button>
                 </form>
             </div>
 			<div class="text-center py-2">
-				<a href="/admin/posts/create" class="btn btn-dark btn-shp">Create</a>
-				<a href="/admin" class="btn btn-outline-dark btn-shp">Back to Dashboard</a>
+				<a href="{{ url('/admin/posts/create') }}" class="btn btn-dark btn-shp">Create</a>
+				<a href="{{ url('/admin') }}" class="btn btn-outline-dark btn-shp">Back to Dashboard</a>
 			</div>
 		</div>
 		<div class="card-body">
@@ -31,24 +31,26 @@
 						</tr>
 					</thead>
 					<tbody>
-                        @foreach($blogs as $blg)
+                        @foreach($blogs as $data => $blg)
 						<tr>
-							<th>{{ $loop->iteration }}</th>
+							<th>{{ $blogs->firstItem()+$data }}</th>
 							<td><img width="100px" src="/storage/{{ $blg->image }}"></td>
 							<td>{{ $blg->title }}</td>
 							<td>{{ Str::limit($blg->desc,40) }}</td>
 							<td>
-								<a href="{{ url('/admin/posts/')}}/{{ $blg->id }}/edit" class="btn btn-dark btn-shp">Edit</a>
-								<form action="/admin/posts/{{ $blg->id }}" method="post">
+								<a href="{{ url('/admin/posts/' . $blg->id . '/edit') }}" class="my-1 col-12 btn btn-dark btn-shp">Edit</a>
+								<a href="{{ url('/show-post/' . $blg->id) }}" class="my-1 col-12 btn btn-success btn-shp">Preview</a>
+								<form action="{{ url('/admin/posts/' . $blg->id) }}" method="post">
 									@csrf
 									@method('DELETE')
-									<button class="btn btn-danger btn-shp">Delete</button>
+									<button class="my-1 col-12 btn btn-danger btn-shp">Delete</button>
 								</form>
 							</td>
 						</tr>
                         @endforeach
 					</tbody>
 				</table>
+				{{ $blogs->links() }}
 			</div>
 		</div>
 	</div>

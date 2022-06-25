@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function homepage()
     {
-        $blog = Blog::paginate(4);
+        $blog = Blog::paginate(3);
         $category = Category::paginate(3);
         return view('frontend.index', compact('blog', 'category'));
     }
@@ -22,18 +22,43 @@ class AdminController extends Controller
 
     public function posts(Request $request)
     {
-        $blog = Blog::paginate(4);
-        $category = Category::paginate(4);
-        return view('frontend.tutorial', compact('blog', 'category'));
+        if ($request->search) {
+            $blog = Blog::with('category')
+            ->where('title', 'LIKE', '%' . $request->search . '%')
+            ->orWhere('desc', 'LIKE', '%' . $request->search . '%')
+            ->paginate(4);
+        } else {
+            $blog = Blog::paginate(4);
+        }
+
+        $category = Category::get();
+        $random = Blog::paginate(4)->sortBy('title');
+        return view('frontend.tutorial', compact('blog', 'category', 'random'));
     }
 
-    public function viewcategory($id)
+    public function allcategory()
+    {
+        $category = Category::all();
+        return view('frontend.category.all', compact('category'));
+    }
+
+    public function viewcategory(Request $request, $id)
     {
         if(Category::where('id', $id)->exists()){
+            if ($request->search) {
+                $category = Category::where('id', $id)->first();
+                $blog = Blog::with('category')
+                ->orWhere('title', 'LIKE', '%' . $request->search . '%')
+                ->orWhere('desc', 'LIKE', '%' . $request->search . '%')
+                ->paginate(4);
+            } else {
+                $category = Category::where('id', $id)->first();
+                $blog = Blog::where('category_id', $category->id)->paginate(4);
+            }
+
             $categories = Category::paginate(4);
-            $category = Category::where('id', $id)->first();
-            $blog = Blog::where('category_id', $category->id)->get();
-            return view('frontend.category.index', compact('category', 'blog', 'categories'));
+            $random = Blog::paginate(4)->sortBy('title');
+            return view('frontend.category.index', compact('category', 'blog', 'categories', 'random'));
         }else{
             return redirect('/tutorial');
         }
@@ -44,7 +69,8 @@ class AdminController extends Controller
         $blog = Blog::with('category')->find($id);
         $blogs = Blog::all();
         $category = Category::all();
-        return view('frontend.show', compact('blog', 'blogs', 'category'));
+        $random = Blog::paginate(4)->sortBy('title');
+        return view('frontend.show', compact('blog', 'blogs', 'category', 'random'));
     }
 
     public function dashboard()

@@ -39,29 +39,31 @@
                 <hr>
                 @foreach($category as $ctr)
                 <div class="d-flex">
-                    <p><a class="text-decoration-none h5" href="{{ url('/view-category/' . $ctr->id ) }}">{{ $ctr->course }}</a></p>
+                    <p><a class="text-secondary text-decoration-none h5" href="{{ url('/view-category/' . $ctr->id ) }}">{{ $ctr->course }}</a></p>
                 </div>
                 @endforeach
             </div>
             <div class="my-3">
-                <p class="h3">Earlier Post</p>
+                <p class="h3">Random Post</p>
                 <hr>
+                @foreach ($random as $rdm)
                 <div class="card shadow my-2">	
                     <div class="row card-body">
                         <div class="col-6">
-                            <img src="" class="img-fluid">
+                            <img src="{{ asset('/storage/' . $rdm->image) }}" class="img-fluid">
                         </div>
                         <div class="col-6">
-                            <p class="h4"><a href=""></a></p>
-                            <a class="" href="">read more . . .</a>
+                            <p class="h4"><a class="text-decoration-none text-dark" href="{{ url('/show-post/' . $rdm->id) }}">{{ $rdm->title }}</a></p>
+                            <a class="text-decoration-none text-muted" href="{{ url('/show-post/' . $rdm->id) }}">read more . . .</a>
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
 	</div>
 </section>
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js"></script>
+<script src="{{ url('https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js') }}"></script>
 <script>
 var splide = new Splide( '.splide', {
   type  : 'fade',

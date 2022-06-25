@@ -35,3 +35,4 @@ Route::get('/about', 'App\Http\Controllers\AdminController@about');
 Route::get('/posts', 'App\Http\Controllers\AdminController@posts');
 Route::get('/view-category/{id}', 'App\Http\Controllers\AdminController@viewcategory');
 Route::get('/show-post/{id}', 'App\Http\Controllers\AdminController@viewpost');
+Route::get('/all-categories', 'App\Http\Controllers\AdminController@allcategory');

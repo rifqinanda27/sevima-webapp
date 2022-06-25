@@ -14,9 +14,16 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $blogs = Blog::all();
+        if($request->search) {
+            $blogs = Blog::with('category')
+            ->where('title', 'LIKE', '%' . $request->search . '%')
+            ->orWhere('desc', 'LIKE', '%' . $request->search . '%')
+            ->paginate(4);
+        }else {
+            $blogs = Blog::with('category')->paginate(4);
+        }
         return view('backend.blog.index', compact('blogs'));
     }
 
@@ -43,6 +50,8 @@ class BlogController extends Controller
             'title' => 'required',
             'category_id' => 'required',
             'image' =>  'required',
+            'image2' => 'required',
+            'image3' => 'required',
             'desc' => 'required',
         ]);
 

@@ -17,7 +17,7 @@
 			</div>
 			@endif	
 			<div class="card-body my-2">
-				<form action="/admin/category" method="post" enctype="multipart/form-data">
+				<form action="{{ url('/admin/category') }}" method="post" enctype="multipart/form-data">
 					@csrf
 					<div class="form-group">
 						<label>Course Name</label>
@@ -29,7 +29,7 @@
 					</div>
 					<div class="my-2">
 						<button class="btn btn-dark">Add</button>
-						<a href="/admin/category" class="btn btn-outline-dark">Back</a>
+						<a href="{{ url('/admin/category') }}" class="btn btn-outline-dark">Back</a>
 					</div>
 				</form>
 			</div>

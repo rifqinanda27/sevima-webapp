@@ -17,7 +17,9 @@
                     <div class="my-4 h5">
                         <p>disini disediakan berbagai</p>
                         <p>macam bahasa pemrogaman untuk dipelajari</p>
-                        <p>ada python, php, java dan lain lain</p>
+                        <p>disini juga ada berbagai macam berita menarik</p>
+                        <p>dan juga info info mengenai pelajaran,</p>
+                        <p>lomba, dan lain lain</p>
                     </div>
 				</div>
 			</div>

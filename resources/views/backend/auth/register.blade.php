@@ -7,16 +7,16 @@
                 <div class="text-center py-4">
                     <h1>Register</h1>
                 </div>
-                @if($errors->all())
-                <div class="alert alert-danger">
-                    <ul>
-                    @foreach($errors->any() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                    </ul>
-                </div>
-                @endif
-                <form action="/admin/saveregister" method="POST">
+                @if($errors->any())
+			    <div class="alert alert-danger">
+				    <ul>
+				    @foreach($errors->all() as $error)
+					    <li>{{ $error }}</li>
+				    @endforeach
+				    </ul>
+			    </div>
+			    @endif
+                <form action="{{ url('/admin/saveregister') }}" method="POST">
                     @csrf
                     <div class="form-outline mb-4">
                         <label class="form-label">Name</label>
@@ -34,7 +34,7 @@
                         <button type="submit" class="btn btn-dark mb-4">Register</button>
                     </div>
                     <div class="text-center">
-                        <p>Already have an account? <a href="/admin/login">Login</a></p>
+                        <p>Already have an account? <a href="{{ url('/admin/login') }}">Login</a></p>
                     </div>
                 </form>
             </div>

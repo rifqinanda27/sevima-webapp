@@ -8,9 +8,9 @@
 	    </button>
 		<div class="collapse navbar-collapse" id="navbarNav">	
 			<ul class="navbar-nav mx-auto">
-				<li class="nav-item"><a class="nav-link h5 fw-bold text-light" href="/">Home</a></li>
-				<li class="nav-item"><a class="nav-link h5 fw-bold text-light" href="/posts">Posts</a></li>
-				<li class="nav-item"><a class="nav-link h5 fw-bold text-light" href="/about">About</a></li>
+				<li class="nav-item"><a class="nav-link h5 fw-bold text-light" href="{{ url('/') }}">Home</a></li>
+				<li class="nav-item"><a class="nav-link h5 fw-bold text-light" href="{{ url('/posts') }}">Posts</a></li>
+				<li class="nav-item"><a class="nav-link h5 fw-bold text-light" href="{{ url('/about') }}">About</a></li>
 			</ul>
 		</div>
 	</div>

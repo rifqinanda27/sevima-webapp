@@ -8,11 +8,11 @@
 	    </button>
 		<div class="collapse navbar-collapse" id="navbarNav">	
 			<ul class="navbar-nav me-auto">
-				<li class="nav-item"><a class="nav-link h5 fw-bold text-light" href="/admin/">Dashboard</a></li>
-				<li class="nav-item"><a class="nav-link h5 fw-bold text-light" href="/admin/posts">Posts</a></li>
-				<li class="nav-item"><a class="nav-link h5 fw-bold text-light" href="/admin/category">Category</a></li>
+				<li class="nav-item"><a class="nav-link h5 fw-bold text-light" href="{{ url('/admin/') }}">Dashboard</a></li>
+				<li class="nav-item"><a class="nav-link h5 fw-bold text-light" href="{{ url('/admin/posts') }}">Posts</a></li>
+				<li class="nav-item"><a class="nav-link h5 fw-bold text-light" href="{{ url('/admin/category') }}">Category</a></li>
 			</ul>
-			<form action="/admin/logout" method="post" class="mt-3">
+			<form action="{{ url('/admin/logout') }}" method="post" class="mt-3">
 				@csrf
 				<button type="submit" class="btn btn-danger">Logout</button>
 			</form>

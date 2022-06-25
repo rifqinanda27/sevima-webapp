@@ -16,7 +16,7 @@
 				    </ul>
 			    </div>
 			    @endif
-                <form action="/admin/savelogin" method="POST">
+                <form action="{{ url('/admin/savelogin') }}" method="POST">
                     @csrf
                   <!-- Email input -->
                   <div class="form-outline mb-4">
@@ -36,7 +36,7 @@
                 
                   <!-- Register buttons -->
                   <div class="text-center">
-                    <p>Not a member? <a href="/admin/register">Register</a></p>
+                    <p>Not a member? <a href="{{ url('/admin/register') }}">Register</a></p>
                   </div>
                 </form>
             </div>

@@ -17,7 +17,7 @@
 			</div>
 			@endif	
 			<div class="card-body my-2">
-				<form action="/admin/category/{{ $category->id }}" method="post" enctype="multipart/form-data">
+				<form action="{{ url('/admin/category/' . $category->id) }}" method="post" enctype="multipart/form-data">
 					@csrf
 					@method('PUT')
 					<div class="form-group">
@@ -30,7 +30,7 @@
 					</div>
 					<div class="my-2">
 						<button class="btn btn-dark">Edit</button>
-						<a href="/admin/category" class="btn btn-outline-dark">Back</a>
+						<a href="{{ url('/admin/category') }}" class="btn btn-outline-dark">Back</a>
 					</div>
 				</form>
 			</div>

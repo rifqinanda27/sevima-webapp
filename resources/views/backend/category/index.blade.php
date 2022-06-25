@@ -36,8 +36,8 @@
 							<td>{{ $ctr->course }}</td>
 							<td>{{ Str::limit($ctr->desc, 50) }}</td>
 							<td>
-								<a href="{{ url('/admin/category/') }}/{{ $ctr->id }}/edit" class="btn btn-dark btn-shp">Edit</a>
-								<form action="/admin/category/{{ $ctr->id }}" method="post">
+								<a href="{{ url('/admin/category/' . $ctr->id . '/edit') }}" class="btn btn-dark btn-shp">Edit</a>
+								<form action="{{ url('/admin/category/' . $ctr->id) }}" method="post">
 									@csrf
 									@method('DELETE')
 									<button class="btn btn-danger btn-shp">Delete</button>

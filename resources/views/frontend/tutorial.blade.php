@@ -21,35 +21,42 @@
 				</div>
 			</div>
             @endforeach
+            <div class="my-3">
+                {{ $blog->links() }}
+            </div>
 		</div>
         <div class="col-lg-4">
-            <div class="d-flex my-2 shadow">
-            <input type="text" name="search" class="form-control">
-                <button class="btn btn-dark">Search</button>
-            </div>
+            <form action="{{ url('/posts') }}">
+                <div class="d-flex my-2 shadow">
+                <input type="text" name="search" class="form-control">
+                    <button class="btn btn-dark">Search</button>
+                </div>
+            </form>
             <div class="my-3">
                 <p class="h3">Category</p>
                 <hr>
                 @foreach($category as $ctr)
                 <div class="d-flex">
-                    <p><a class="text-decoration-none h5" href="{{ url('/view-category/' . $ctr->id ) }}">{{ $ctr->course }}</a></p>
+                    <p><a class="text-decoration-none h5 text-secondary" href="{{ url('/view-category/' . $ctr->id ) }}">{{ $ctr->course }}</a></p>
                 </div>
                 @endforeach
             </div>
             <div class="my-3">
-                <p class="h3">Earlier Post</p>
+                <p class="h3">Random Post</p>
                 <hr>
+                @foreach ($random as $rdm)
                 <div class="card shadow my-2">	
                     <div class="row card-body">
                         <div class="col-6">
-                            <img src="" class="img-fluid">
+                            <img src="{{ asset('/storage/' . $rdm->image) }}" class="img-fluid">
                         </div>
                         <div class="col-6">
-                            <p class="h4"><a href=""></a></p>
-                            <a class="" href="">read more . . .</a>
+                            <p class="h4"><a class="text-decoration-none text-dark" href="{{ url('/show-post/' . $rdm->id) }}">{{ $rdm->title }}</a></p>
+                            <a class="text-decoration-none text-muted" href="{{ url('/show-post/' . $rdm->id) }}">read more . . .</a>
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
 	</div>

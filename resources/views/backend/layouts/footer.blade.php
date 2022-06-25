@@ -1,4 +1,4 @@
-<footer class="bg-dark 	container-internal">
+<footer class="bg-dark">
 	<div class="container">
 		<div class="py-5">
 			<div class="row flex-column flex-lg-row">
