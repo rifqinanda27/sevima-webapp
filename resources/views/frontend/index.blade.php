@@ -57,12 +57,12 @@
 		<div class="card shadow p-3 my-2">	
 			<div class="row card-body">
 				<div class="col-5">
-					<img src="assets/img/img_banner_start_first_order_01.png" class="img-fluid">
+					<img src="{{ asset('/storage') }}/{{ $blg->image }}" class="img-fluid w-100">
 				</div>
 				<div class="col-7">
 					<p class="h2"><a class="text-decoration-none text-dark" href="">{{ $blg->title }}</a></p>
 					<p>{{ Str::limit($blg->desc, 100) }}</p>
-					<a class="" href="">read more . . .</a>
+					<a class="text-decoration-none text-muted" href="">read more . . .</a>
 				</div>
 			</div>
 		</div>

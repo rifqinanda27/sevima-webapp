@@ -20,9 +20,22 @@ class AdminController extends Controller
         return view('frontend.about');
     }
 
-    public function tutorial()
+    public function tutorial(Request $request)
     {
-        return view('frontend.tutorial');
+        $blog = Blog::paginate(4);
+        $category = Category::paginate(4);
+        return view('frontend.tutorial', compact('blog', 'category'));
+    }
+
+    public function viewcategory($id)
+    {
+        if(Category::where('id', $id)->exists()){
+            $category = Category::where('id', $id)->first();
+            $blog = Blog::where('category_id', $category->id)->get();
+            return view('frontend.category.index', compact('category', 'blog'));
+        }else{
+            return redirect('/tutorial');
+        }
     }
 
     public function dashboard()

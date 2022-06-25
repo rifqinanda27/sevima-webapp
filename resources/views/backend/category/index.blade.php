@@ -25,6 +25,7 @@
 						<tr>
 							<th style="width: 10px;">No.</th>
 							<th>Course</th>
+							<th>Description</th>
 							<th style="width: 300px">Action</th>
 						</tr>
 					</thead>
@@ -33,6 +34,7 @@
 						<tr>
 							<th>{{ $loop->iteration }}</th>
 							<td>{{ $ctr->course }}</td>
+							<td>{{ Str::limit($ctr->desc, 50) }}</td>
 							<td>
 								<a href="{{ url('/admin/category/') }}/{{ $ctr->id }}/edit" class="btn btn-dark btn-shp">Edit</a>
 								<form action="/admin/category/{{ $ctr->id }}" method="post">

@@ -38,10 +38,12 @@ class CategoryController extends Controller
     {
         $request->validate([
             'course' => 'required',
+            'desc' => 'required',
         ]);
         
         Category::create([
             'course' => $request->course,
+            'desc' => $request->desc,
         ]);
 
         return redirect('/admin/category');
@@ -81,10 +83,12 @@ class CategoryController extends Controller
     {
         $request->validate([
             'course' => 'required',
+            'desc' => 'required',
         ]);
         
         Category::where('id', $category->id)->update([
             'course' => $request->course,
+            'desc' => $request->desc,
         ]);
 
         return redirect('/admin/category');

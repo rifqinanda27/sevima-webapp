@@ -14,7 +14,7 @@ class AddToCategory extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->string('desc');
+            $table->longText('desc');
         });
     }
 

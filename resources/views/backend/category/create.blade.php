@@ -23,6 +23,10 @@
 						<label>Course Name</label>
 						<input type="text" name="course" class="form-control" placeholder="course . . .">
 					</div>
+					<div class="form-group">
+						<label>Description</label>
+						<textarea type="text" name="desc" class="form-control" rows="10" placeholder="Description . . ."></textarea>
+					</div>
 					<div class="my-2">
 						<button class="btn btn-dark">Add</button>
 						<a href="/admin/category" class="btn btn-outline-dark">Back</a>
