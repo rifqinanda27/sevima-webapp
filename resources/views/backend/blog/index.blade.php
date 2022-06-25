@@ -31,18 +31,20 @@
 						</tr>
 					</thead>
 					<tbody>
+                        @foreach($blogs as $blg)
 						<tr>
-							<th></th>
-							<td><img width="100px" src=""></td>
-							<td></td>
-							<td></td>
+							<th>{{ $loop->iteration }}</th>
+							<td><img width="100px" src="/storage/{{ $blg->image }}"></td>
+							<td>{{ $blg->title }}</td>
+							<td>{{ $blg->desc }}</td>
 							<td>
-								<a href="" class="btn btn-dark btn-shp">Edit</a>
+								<a href="{{ url('/admin/posts/')}}/{{ $blg->id }}/edit" class="btn btn-dark btn-shp">Edit</a>
 								<form action="" method="post">
 									<button class="btn btn-danger btn-shp">Delete</button>
 								</form>
 							</td>
 						</tr>
+                        @endforeach
 					</tbody>
 				</table>
 			</div>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Storage;
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -14,7 +16,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('backend.blog.index');
+        $blogs = Blog::all();
+        return view('backend.blog.index', compact('blogs'));
     }
 
     /**
@@ -24,7 +27,8 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('backend.blog.create');
+        $category = Category::all();
+        return view('backend.blog.create', compact('category'));
     }
 
     /**
@@ -35,7 +39,23 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'category_id' => 'required',
+            'image' =>  'required',
+            'desc' => 'required',
+        ]);
+
+        $imgData = Storage::disk('public')->put('image', $request->file('image'));
+
+        Blog::create([
+            'title' => $request->title,
+            'category_id' => $request->category_id,
+            'image' => $imgData,
+            'desc' => $request->desc,
+        ]);
+
+        return redirect('/admin/posts');
     }
 
     /**
@@ -55,9 +75,11 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit($id)
     {
-        return view('backend.blog.edit');
+        $blog = Blog::with('category')->find($id);
+        $category = Category::all();
+        return view('backend.blog.edit', compact('blog', 'category'));
     }
 
     /**
@@ -67,9 +89,29 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'category_id' => 'required',
+            'desc' => 'required',
+        ]);
+
+        $imgData = $request->img_old;
+        if ( $request->has('image') ) {
+            $delete = Blog::findOrFail($id);
+            Storage::disk('public')->delete($delete->image);
+            $imgData = Storage::disk('public')->put('image', $request->file('image'));
+        }
+
+        Blog::where('id', $id)->update([
+            'title' => $request->title,
+            'category_id' => $request->category_id,
+            'image' => $imgData,
+            'desc' => $request->desc,
+        ]);
+
+        return redirect('/admin/posts');
     }
 
     /**
