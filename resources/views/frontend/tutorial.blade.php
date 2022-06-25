@@ -1,22 +1,22 @@
 @extends('layout')
-<title>Homepage</title>
+<title>Posts</title>
 @include('frontend.layouts.nav')
 <section class="my-3 container">
 	<div class="row">
 		<div>
-			<p class="h3">Recent Article</p>
+			<p class="h3">Recent Posts</p>
 		</div>
 		<div class="col-lg-8">
             @foreach($blog as $blg)
 			<div class="card shadow p-3 my-2">	
 				<div class="row card-body">
 					<div class="col-6">
-						<img src="{{ asset('/storage') }}/{{ $blg->image }}" class="img-fluid">
+						<img src="{{ asset('/storage/' . $blg->image) }}" class="img-fluid">
 					</div>
 					<div class="col-6">
-						<p class="h2"><a class="text-decoration-none text-dark" href="{{ url('/show') }}/{{ $blg->id }}">{{ $blg->title }}</a></p>
+						<p class="h2"><a class="text-decoration-none text-dark" href="{{ url('/show-post/' . $blg->id) }}">{{ $blg->title }}</a></p>
 						<p>{{ Str::limit($blg->desc ,125) }}</p>
-						<a class="text-decoration-none text-muted" href="{{ url('/show') }}/{{ $blg->id }}">read more . . .</a>
+						<a class="text-decoration-none text-muted" href="{{ url('/show-post/' . $blg->id) }}">read more . . .</a>
 					</div>
 				</div>
 			</div>

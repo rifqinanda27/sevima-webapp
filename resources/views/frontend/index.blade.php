@@ -31,18 +31,21 @@
 		<div class="row">
 			@foreach($category as $ctr)
 			<div class="col-lg-4">
-				<a href="{{ url('/category') }}/ {{ $ctr->id }}" class="text-decoration-none">
+				<a href="{{ url('/view-category/' . $ctr->id) }}" class="text-decoration-none">
 					<div class="card p-3 shadow">
 						<div class="card-body">
 							<div>
 								<p class="h4 text-dark">{{ $ctr->course }}</p>
-								<p class="text-secondary">{{ $ctr->desc }}</p>
+								<p class="text-secondary">{{ Str::limit($ctr->desc, 20) }}</p>
 							</div>
 						</div>
 					</div>	
 				</a>
 			</div>
 			@endforeach
+		</div>
+		<div class="my-2">
+			{{ $category->links() }}
 		</div>
 	</div>
 </section>

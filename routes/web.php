@@ -32,5 +32,6 @@ Route::middleware(['check_on_login'])->group(function() {
 
 Route::get('/', 'App\Http\Controllers\AdminController@homepage');
 Route::get('/about', 'App\Http\Controllers\AdminController@about');
-Route::get('/tutorial', 'App\Http\Controllers\AdminController@tutorial');
+Route::get('/posts', 'App\Http\Controllers\AdminController@posts');
 Route::get('/view-category/{id}', 'App\Http\Controllers\AdminController@viewcategory');
+Route::get('/show-post/{id}', 'App\Http\Controllers\AdminController@viewpost');

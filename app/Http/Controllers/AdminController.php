@@ -20,7 +20,7 @@ class AdminController extends Controller
         return view('frontend.about');
     }
 
-    public function tutorial(Request $request)
+    public function posts(Request $request)
     {
         $blog = Blog::paginate(4);
         $category = Category::paginate(4);
@@ -30,12 +30,21 @@ class AdminController extends Controller
     public function viewcategory($id)
     {
         if(Category::where('id', $id)->exists()){
+            $categories = Category::paginate(4);
             $category = Category::where('id', $id)->first();
             $blog = Blog::where('category_id', $category->id)->get();
-            return view('frontend.category.index', compact('category', 'blog'));
+            return view('frontend.category.index', compact('category', 'blog', 'categories'));
         }else{
             return redirect('/tutorial');
         }
+    }
+
+    public function viewpost($id)
+    {
+        $blog = Blog::with('category')->find($id);
+        $blogs = Blog::all();
+        $category = Category::all();
+        return view('frontend.show', compact('blog', 'blogs', 'category'));
     }
 
     public function dashboard()
