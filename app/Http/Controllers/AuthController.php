@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Hash;
 
 class AuthController extends Controller
 {
@@ -11,7 +13,7 @@ class AuthController extends Controller
         return view('backend.auth.register');
     }
 
-    public function saveregister()
+    public function saveregister(Request $request)
     {
         $request->validate([
             'email' => 'required',
@@ -40,21 +42,18 @@ class AuthController extends Controller
         ]);
 
         $data = User::where('email', $request->email)->firstOrFail();
-
-        if(Auth::attempt($credentials)){
-            session()->put('user', [
-                'email' => $request->email,
-            ]);
-
-            return redirect('/admin/dashboard');
-        }
         if ($data) {
             if (Hash::check($request->password,$data->password)) {
                 
                 session(['Login Succeed' => true]);
-                return redirect('/admin/dashboard');
             }
         }
+        return redirect('/admin');
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
         return redirect('/admin/login');
     }
 }

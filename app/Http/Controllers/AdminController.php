@@ -10,7 +10,9 @@ class AdminController extends Controller
 {
     public function homepage()
     {
-        return view('frontend.index');
+        $blog = Blog::paginate(4);
+        $category = Category::paginate(3);
+        return view('frontend.index', compact('blog', 'category'));
     }
 
     public function about()

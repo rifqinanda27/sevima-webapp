@@ -16,14 +16,20 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::middleware(['check_off_login'])->group(function() {
+    Route::get('/admin/login', 'App\Http\Controllers\AuthController@login');
+    Route::get('/admin/register', 'App\Http\Controllers\AuthController@register');
+    Route::post('/admin/saveregister', 'App\Http\Controllers\AuthController@saveregister');
+    Route::post('/admin/savelogin', 'App\Http\Controllers\AuthController@savelogin');
+});
 
-Route::get('/admin/login', 'App\Http\Controllers\AuthController@login');
-Route::get('/admin/register', 'App\Http\Controllers\AuthController@register');
+Route::middleware(['check_on_login'])->group(function() {
+    Route::get('/admin', 'App\Http\Controllers\AdminController@dashboard');
+    Route::resource('/admin/posts', 'App\Http\Controllers\BlogController');
+    Route::resource('/admin/category', 'App\Http\Controllers\CategoryController');
+    Route::post('/admin/logout', 'App\Http\Controllers\AuthController@logout');
+});
 
 Route::get('/', 'App\Http\Controllers\AdminController@homepage');
 Route::get('/about', 'App\Http\Controllers\AdminController@about');
 Route::get('/tutorial', 'App\Http\Controllers\AdminController@tutorial');
-Route::get('/admin', 'App\Http\Controllers\AdminController@dashboard');
-
-Route::resource('/admin/posts', 'App\Http\Controllers\BlogController');
-Route::resource('/admin/category', 'App\Http\Controllers\CategoryController');

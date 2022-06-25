@@ -11,6 +11,12 @@
 				<li class="nav-item"><a class="nav-link h5 fw-bold text-light" href="/admin/">Home</a></li>
 				<li class="nav-item"><a class="nav-link h5 fw-bold text-light" href="/admin/posts">Posts</a></li>
 				<li class="nav-item"><a class="nav-link h5 fw-bold text-light" href="/admin/category">Category</a></li>
+				<li class="nav-item">
+        			<form action="/admin/logout" method="post">
+        				@csrf
+        				<button type="submit" class="btn btn-danger">Logout</button>
+        			</form>
+        		</li>
 			</ul>
 		</div>
 	</div>
