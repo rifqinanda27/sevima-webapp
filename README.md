@@ -2,6 +2,11 @@
 
 Web project for posting article, news, or something for learning
 
+## Requirements
+1. Laragon, Xampp, Wamp or etc
+2. Min PHP 7
+3. IDE Text Editor
+
 ## Installation ( Local )
 1. Import Database (from folder File PPT dan Database Mysql )  
 2. Open Git Bash
@@ -15,6 +20,10 @@ Web project for posting article, news, or something for learning
 2. CRUD for Category
 3. Admin Dashboard
 4. Frontend and Backend
+
+## Library that are use in this project
+1. Splide ( Frontend )
+2. Bootstrap ( Frontend )
 
 ## Screenshot
 
